@@ -38,10 +38,17 @@ public class MyController {
         employeeService.saveEmployee(employee);
         return "redirect:/"; // возвращение назад к списку работников
     }
+
     @RequestMapping("/updateInfo")
-    public String updateEmployee(@RequestParam("empId") int id, Model model){
+    public String updateEmployee(@RequestParam("empId") int id, Model model) {
         Employee employee = employeeService.getEmployee(id);
-        model.addAttribute("employee",employee);
+        model.addAttribute("employee", employee);
         return "employee-info";
+    }
+
+    @RequestMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam("empId") int id, Model model) {
+        employeeService.deleteEmployee(id);
+        return "redirect:/";
     }
 }
